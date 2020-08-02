@@ -1,6 +1,12 @@
 # flask_gcp_wand
 Python flask library on GCP - mainly on GAE.
 
+## Version
+
+Now version `0.1.*` is alpha version.
+
+In the future, release `0.2.*` beta version
+
 ## Install
 
 ```
@@ -28,7 +34,7 @@ register_simple_error_handler(app)
 ### AppEngine Env Variables
 
 ```
-from flask_gcp_wand.appengine import GaeEnv
+from flask_gcp_wand.appengine.env import GaeEnv
 from flask import current_app
 
 if GaeEnv.is_gae():

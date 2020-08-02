@@ -1,6 +1,6 @@
 from http import HTTPStatus
 from flask import Response
-from .appengine import GaeHeader
+from .appengine.header import GaeHeader
 
 
 def only_cloud_scheduler_for_gae_http(func):

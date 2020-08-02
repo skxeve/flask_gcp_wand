@@ -1,5 +1,5 @@
 from google.cloud import secretmanager
-from ..appengine import GaeEnv
+from ..appengine.env import GaeEnv
 
 
 class SecretHolder:

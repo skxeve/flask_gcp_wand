@@ -1,6 +1,6 @@
 import logging
 from flask import Flask
-from . import GaeEnv
+from .env import GaeEnv
 from ..template.response import unexpected_error_response
 
 DEFAULT_LOG_FORMAT = "%(funcName)s:%(lineno)d %(message)s"

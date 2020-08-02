@@ -1,6 +1,6 @@
 from flask import current_app, make_response, jsonify
 from http import HTTPStatus
-from ..appengine import GaeEnv
+from ..appengine.env import GaeEnv
 
 
 def unexpected_error_response(e: Exception):
