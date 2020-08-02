@@ -2,9 +2,23 @@ from flask import request
 
 
 class AppEngineHeader:
+    GAE_PREFIX = "X-Appengine-"
+
     @property
     def user_ip(self):
-        return request.headers.get("X-Appengine-User-Ip")
+        return request.headers.get(self.GAE_PREFIX + "User-Ip")
+
+    @property
+    def city(self):
+        return request.headers.get(self.GAE_PREFIX + "City")
+
+    @property
+    def city_latlong(self):
+        return request.headers.get(self.GAE_PREFIX + "Citylatlong")
+
+    @property
+    def country(self):
+        return request.headers.get(self.GAE_PREFIX + "Country")
 
     @property
     def cloudscheduler(self):
@@ -12,11 +26,13 @@ class AppEngineHeader:
 
     @property
     def tasks_queue_name(self):
-        return request.headers.get("X-Appengine-Queuename")
+        return request.headers.get(self.GAE_PREFIX + "Queuename")
 
     @property
     def tasks_execution_count(self):
-        return int(request.headers.get("X-AppEngine-TaskExecutionCount", -1))
+        return int(
+            request.headers.get(self.GAE_PREFIX + "TaskExecutionCount", -1)
+        )
 
     def _is_internal_ip(self):
         return self.user_ip in ("0.1.0.1", "0.1.0.2",)
