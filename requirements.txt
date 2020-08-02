@@ -1,0 +1,5 @@
+Flask >= 1.0.2
+
+# google-cloud-logging
+# google-cloud-pubsub
+# google-cloud-secret-manager

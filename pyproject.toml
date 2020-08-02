@@ -1,0 +1,10 @@
+[tool.black]
+line-length = 79
+exclude = '''
+(
+    venv,
+    build,
+    dist,
+    flask_gcp_wand.egg-info,
+)
+'''
