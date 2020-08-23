@@ -34,6 +34,18 @@ class AppEngineHeader:
             request.headers.get(self.GAE_PREFIX + "TaskExecutionCount", -1)
         )
 
+    @property
+    def user_id(self):
+        return request.headers.get(self.GAE_PREFIX + "User-Id")
+
+    @property
+    def user_email(self):
+        return request.headers.get(self.GAE_PREFIX + "User-Email")
+
+    @property
+    def user_is_admin(self):
+        return request.headers.get(self.GAE_PREFIX + "User-Is-Admin")
+
     def _is_internal_ip(self):
         return self.user_ip in ("0.1.0.1", "0.1.0.2",)
 

@@ -1,5 +1,5 @@
 
-all: clean build upload-test
+all: clean build upload-test upload
 
 build:
 	python setup.py bdist_wheel
