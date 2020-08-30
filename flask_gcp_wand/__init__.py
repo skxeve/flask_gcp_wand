@@ -1,5 +1,5 @@
 __copyright__ = "Copyright (C) 2020 Shuhei Koike"
-__version__ = "0.1.10"
+__version__ = "0.1.11"
 __license__ = "MIT"
 __author__ = "Shuhei Koike"
 __author_email__ = "skxeve@gmail.com"
@@ -14,4 +14,6 @@ __all__ = [
     "secret",
     "decorator",
     "run",
+    "firestore",
+    "utils",
 ]
