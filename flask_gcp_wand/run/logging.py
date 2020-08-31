@@ -37,7 +37,9 @@ class CloudRunLogRecord(logging.LogRecord):
         return json.dumps(entry)
 
 
-def setup_logging_cloudrun():
+def setup_logging_cloudrun(log_set_level=None):
+    if log_set_level is None:
+        log_set_level = logging.DEBUG
     logging.basicConfig(format="%(message)s")
     logging.setLogRecordFactory(CloudRunLogRecord)
-    logging.getLogger().setLevel(logging.DEBUG)
+    logging.getLogger().setLevel(log_set_level)
