@@ -4,6 +4,9 @@ from ..consts.pubsub import PUBLISH_TIMEOUT_SEC
 from ..model.message import AbstractMessage
 
 
+_gcp_publisher_client = None
+
+
 class Publisher:
     def __init__(self, project_id=None, timeout=PUBLISH_TIMEOUT_SEC):
         if project_id:
@@ -23,17 +26,17 @@ class Publisher:
         data: str = None,
         **kwargs,
     ):
-        global gcp_publisher_client
-        if gcp_publisher_client is None:
-            gcp_publisher_client = pubsub_v1.PublisherClient()
+        global _gcp_publisher_client
+        if _gcp_publisher_client is None:
+            _gcp_publisher_client = pubsub_v1.PublisherClient()
 
-        topic_path = gcp_publisher_client.topic_path(self.project_id, topic)
+        topic_path = _gcp_publisher_client.topic_path(self.project_id, topic)
         if message:
             data = message.payload
             if message.attributes:
                 for k, v in message.attributes:
                     kwargs[k] = v
-        future = gcp_publisher_client.publish(
+        future = _gcp_publisher_client.publish(
             topic_path, data.encode("utf-8"), **kwargs
         )
         self._futures.append(
