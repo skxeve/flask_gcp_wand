@@ -1,6 +1,7 @@
 from flask import current_app, make_response, jsonify
 from http import HTTPStatus
 from ..appengine.env import GaeEnv
+from werkzeug.exceptions import HTTPException
 
 
 def unexpected_error_response(e: Exception):
@@ -18,3 +19,11 @@ def unexpected_error_response(e: Exception):
             "message": str(e),
         }
     return make_response(jsonify(res), HTTPStatus.INTERNAL_SERVER_ERROR)
+
+
+def not_found_response(e: HTTPException):
+    res = {
+        "status": HTTPStatus.NOT_FOUND,
+        "error": "NotFound",
+    }
+    return make_response(jsonify(res), HTTPStatus.NOT_FOUND)

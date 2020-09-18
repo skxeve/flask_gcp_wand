@@ -1,7 +1,8 @@
 import logging
 from flask import Flask
 from .env import GaeEnv
-from ..template.response import unexpected_error_response
+from ..template.response import unexpected_error_response, not_found_response
+from werkzeug.exceptions import NotFound, MethodNotAllowed
 
 DEFAULT_LOG_FORMAT = "%(funcName)s:%(lineno)d %(message)s"
 
@@ -33,4 +34,6 @@ def setup_default_log_level(app):
 
 
 def register_simple_error_handler(app):
+    app.register_error_handler(NotFound, not_found_response)
+    app.register_error_handler(MethodNotAllowed, not_found_response)
     app.register_error_handler(Exception, unexpected_error_response)
